@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryIndexedTree {
-    final long[] binaryIndexedTree;
-    final int upperbound;
+    public final long[] binaryIndexedTree;
+    public final int upperbound;
 
     public BinaryIndexedTree(int upperbound) {
         this.upperbound = upperbound;

@@ -7,9 +7,8 @@ import java.util.function.LongBinaryOperator;
 import java.util.function.LongUnaryOperator;
 import java.util.stream.IntStream;
 
-
 public class Dirichlet {
-    long[] values;
+    public long[] values;
     public final long[] quotients;
     public final long upperbound;
     public final int upperboundSqrt;
@@ -53,7 +52,7 @@ public class Dirichlet {
             return (int) (2 * upperboundSqrt - upperbound / quotient) + (removeOne ? 0 : 1);
     }
 
-    long smallestQuotientAtLeast(long integer) {
+    public long smallestQuotientAtLeast(long integer) {
         return quotients[quotientToIndex(integer)];
     }
 
