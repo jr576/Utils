@@ -1,4 +1,4 @@
-package io.jr576;
+package io.jr576.utils;
 
 import java.util.List;
 import java.util.stream.IntStream;
