@@ -19,13 +19,13 @@ public class Dirichlet {
         this.upperbound = upperbound;
         this.upperboundSqrt = (int) Math.sqrt(upperbound);
         this.removeOne = upperbound / upperboundSqrt == upperboundSqrt;
-        this.breakPoint = smallestQuotientAtLeast((long) Math.pow(upperbound, 2.0 / 3));
         values = new long[2 * upperboundSqrt + (this.removeOne ? 0 : 1)];
         quotients = new long[2 * upperboundSqrt + (this.removeOne ? 0 : 1)];
         for (int d = 1; d <= upperboundSqrt; d++)
             quotients[d] = d;
         for (int d = upperboundSqrt; d >= 1; d--)
             quotients[2 * upperboundSqrt + (this.removeOne ? 0 : 1) - d] = upperbound / d;
+        this.breakPoint = smallestQuotientAtLeast((long) Math.pow(upperbound, 2.0 / 3));
     }
 
     public Dirichlet(long upperbound, LongUnaryOperator function) {
@@ -333,5 +333,6 @@ public class Dirichlet {
         result = 31 * result + Arrays.hashCode(quotients);
         return result;
     }
+
 }
 
