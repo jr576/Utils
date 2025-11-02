@@ -36,6 +36,10 @@ public class Dirichlet {
         }
     }
 
+    public Dirichlet clone() {
+        return new Dirichlet(this);
+    }
+
     private Dirichlet(Dirichlet copyFieldsOf) {
         this.upperbound = copyFieldsOf.upperbound;
         this.upperboundSqrt = copyFieldsOf.upperboundSqrt;
@@ -333,6 +337,7 @@ public class Dirichlet {
         result = 31 * result + Arrays.hashCode(quotients);
         return result;
     }
+
 
 }
 
