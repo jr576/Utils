@@ -25,7 +25,7 @@ public class Dirichlet {
             quotients[d] = d;
         for (int d = upperboundSqrt; d >= 1; d--)
             quotients[2 * upperboundSqrt + (this.removeOne ? 0 : 1) - d] = upperbound / d;
-        this.breakPoint = smallestQuotientAtLeast((long) Math.pow(upperbound, 2.0 / 3));
+        this.breakPoint = largestQuotientAtMost((long) Math.pow(upperbound, 2.0/3));
     }
 
     public Dirichlet(long upperbound, LongUnaryOperator function) {
@@ -56,7 +56,7 @@ public class Dirichlet {
             return (int) (2 * upperboundSqrt - upperbound / quotient) + (removeOne ? 0 : 1);
     }
 
-    public long smallestQuotientAtLeast(long integer) {
+    public long largestQuotientAtMost(long integer) {
         return quotients[quotientToIndex(integer)];
     }
 
@@ -185,7 +185,7 @@ public class Dirichlet {
 
     public Dirichlet multiplyTwo(Dirichlet multiplyWith) {
         Dirichlet product = new Dirichlet(this);
-        long breakPoint = smallestQuotientAtLeast((long) Math.pow(upperbound, 2.0 / 3));
+        long breakPoint = largestQuotientAtMost((long) Math.pow(upperbound, 2.0/3));
         for (int i = 1; quotients[i] <= breakPoint; i++) {
             for (int j = 1; quotients[j] <= breakPoint / quotients[i]; j++)
                 product.add(quotients[i] * quotients[j], (this.values[i] - this.values[i - 1]) * (multiplyWith.values[j] - multiplyWith.values[j - 1]));
@@ -198,7 +198,7 @@ public class Dirichlet {
 
     public Dirichlet multiplyModTwo(Dirichlet multiplyWith, long mod) {
         Dirichlet product = new Dirichlet(this);
-        long breakPoint = smallestQuotientAtLeast((long) Math.pow(upperbound, 2.0 / 3));
+        long breakPoint = largestQuotientAtMost((long) Math.pow(upperbound, 2.0/3));
         for (int i = 1; quotients[i] <= breakPoint; i++) {
             for (int j = 1; quotients[j] <= breakPoint / quotients[i]; j++)
                 product.addMod(quotients[i] * quotients[j], (this.values[i] - this.values[i - 1]) * (multiplyWith.values[j] - multiplyWith.values[j - 1]), mod);
